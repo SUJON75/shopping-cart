@@ -7,11 +7,6 @@
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
-
-   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
    <link href="style.css" rel="stylesheet">
 </head>
 
@@ -21,7 +16,7 @@
       <div id="checkout-area" class="container">
          <div class="cart">
             <div class="col-md-12 col-lg-10 mx-auto">
-               <div id="product-area1" class="cart-item">
+               <div id="product-area" class="cart-item">
                   <div class="row">
                      <div class="col-md-7 center-item">
                         <img src="images/product-1.png" alt="">
@@ -30,32 +25,31 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button id="" class="btn btn-default"><i class="fas fa-minus decrease-btn2"></i></button>
-                           <input id="" type="text" class="form-control text-center quantity2" value="1">
-                           <button id="" class="btn btn-default"><i class="fas fa-plus increase-btn2"></i></button>
+                           <button id="minusButton" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="phoneCurrentValue" type="text" class="form-control text-center" value="1">
+                           <button id="plusButton" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5 id="">$1219</h5>
-                        <img id="removeItem1" src="images/remove.png" alt="" class="remove-item">
+                        <h5>$<span id="phoneCurrentAmount">1219</span></h5>
+                        <img id="removeItem" src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
                </div>
 
-               <div id="product-area" class="cart-item">
+               <div id="product-area1" class="cart-item">
                   <div class="row">
                      <div class="col-md-7 center-item mx-auto">
                         <img src="images/product-2.png" alt="">
                         <h5>iPhone 11 Silicone Case - Black</h5>
                      </div>
-                     <div class="col-md-5 center-item checkout">
+                     <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-
-                           <button id="" class="btn btn-default "><i class="fas fa-minus decrease-btn"></i></button>
-                           <input id="productPic" type="text" class="form-control text-center quantity" value="1">
-                           <button id="plusProductItem" class="btn btn-default "><i class="fas fa-plus increase-btn"></i></button>
+                           <button id="casingMinusBtn" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="casingCurrentValue" type="text" class="form-control text-center" value="1">
+                           <button id="casingPlusBtn" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
-                        <h5>$ <span id="currentBalance">59</span></h5>
-                        <img id="removeItem" src="images/remove.png" alt="" class="remove-item">
+                        <h5>$<span id="casingCurrentAmount">59</span></h5>
+                        <img id="removeItem1" src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
                </div>
@@ -70,39 +64,31 @@
                      </div>
 
                      <div class="col-md-4 status">
-                        <h5>$ <span id="currentBalance">1,278</span></h5>
+                        <h5>$<span id="subtotalAmount">1278</span></h5>
                         <h5>$0</h5>
-                        <h5>$1,278</h5>
+                        <h5>$ <span id="totalAmount">1278</span></h5>
                      </div>
                   </div>
                </div>
-               <div id="" class="col-md-12 pt-4 pb-4">
+               <div class="col-md-12 pt-4 pb-4">
                   <button id="checkout" type="button" class="btn btn-success check-out">Check Out</button>
                </div>
             </div>
          </div>
       </div>
-   </section>
-   <section id="completePayment">
-      <div>
-         <h1>Complete Payment</h1>
-      </div>
+      <section id="completePayment">
+         <div>
+            <h1>Complete Your Payment</h1>
+         </div>
+      </section>
    </section>
 
 
    <script>
-         // Checkout 
-        const checkoutBtn = document.getElementById("checkout");
-        
-        checkoutBtn.addEventListener("click", function(){
-            const checkoutArea = document.getElementById("checkout-area");
-            checkoutArea.style.display = "none";
-            const completePayment = document.getElementById("completePayment");
-            completePayment.style.display = "block";
-        });
 
-        // product item Delete 1
-        const productAreaImg = document.getElementById("removeItem");
+
+      // product item Delete 1
+      const productAreaImg = document.getElementById("removeItem");
         
         productAreaImg.addEventListener("click", function(){
             const removeImgArea = document.getElementById("product-area");
@@ -118,42 +104,83 @@
         })
 
 
-      
-
-        var $buttonPlus = $('.increase-btn');
-         var $buttonMin = $('.decrease-btn');
-         var $quantity = $('.quantity');
-
-         /*For plus and minus buttons*/
-         $buttonPlus.click(function() {
-         $quantity.val(parseInt($quantity.val()) + 1).trigger('input');
-         });
-  
-         $buttonMin.click(function() {
-         $quantity.val(Math.max(parseInt($quantity.val()) - 1, 0)).trigger('input');
-         });
 
 
-         var $buttonPlus2 = $('.increase-btn2');
-         var $buttonMin2 = $('.decrease-btn2');
-         var $quantity2 = $('.quantity2');
 
-         /*For plus and minus buttons*/
-         $buttonPlus2.click(function() {
-         $quantity2.val(parseInt($quantity2.val()) + 1).trigger('input');
-         });
-  
-         $buttonMin2.click(function() {
-         $quantity2.val(Math.max(parseInt($quantity2.val()) - 1, 0)).trigger('input');
-         });
+      // Plus Button Handler of iPhone
+      const plusButton = document.getElementById('plusButton');
+      plusButton.addEventListener('click', function(){
 
-        
+         increaseIputNumber('phoneCurrentValue', 1);
+         updateAmount('phoneCurrentAmount', 1219);
 
+         updateAmount('subtotalAmount', 1219);
+         updateAmount('totalAmount', 1219);
+      })
+
+      //Minus Button handler of iPhone
+      const minusButton = document.getElementById('minusButton');
+      minusButton.addEventListener('click', function(){
+
+         increaseIputNumber('phoneCurrentValue', -1);
+         updateAmount('phoneCurrentAmount', -1219);
+
+         updateAmount('subtotalAmount', -1219);
+         updateAmount('totalAmount', -1219);
          
-   
+      })
+
+      //Plus Button handler of iPhone casing 
+      const casingPlusBtn = document.getElementById('casingPlusBtn');
+      casingPlusBtn.addEventListener('click', function(){
+
+         increaseIputNumber('casingCurrentValue', 1);
+         updateAmount('casingCurrentAmount', 59);
+
+         updateAmount('subtotalAmount', 59);
+         updateAmount('totalAmount', 59);
+      })
+
+      //Minus Button handler of iPhone casing
+      const casingMinusBtn = document.getElementById('casingMinusBtn');
+      casingMinusBtn.addEventListener('click', function(){
+
+         increaseIputNumber('casingCurrentValue', -1);
+         updateAmount('casingCurrentAmount', -59);
+
+         updateAmount('subtotalAmount', -59);
+         updateAmount('totalAmount', -59);
+
+      })
+
+
+      function increaseIputNumber(id, newNumber){
+         const currentValue = document.getElementById(id).value;
+         const currentValueNumber = parseFloat(currentValue);
+         const currentNumber = currentValueNumber + newNumber;
+         document.getElementById(id).value = currentNumber;
+      }
+
+      function updateAmount(id, newAmount){
+         const currentAmount = document.getElementById(id).innerText;
+         const currentAmountNumber = parseFloat(currentAmount);
+         const totalAmount = currentAmountNumber + newAmount;
+         document.getElementById(id).innerText = totalAmount;
+      }
+
+      // const checkBtn = document.getElementById('check-btn').addEventListener('click', function(){
+      //    alert('Purchase items')
+      // })
+
+      // Checkout 
+      const checkoutBtn = document.getElementById("checkout");
         
-      
-      
+        checkoutBtn.addEventListener("click", function(){
+            const checkoutArea = document.getElementById("checkout-area");
+            checkoutArea.style.display = "none";
+            const completePayment = document.getElementById("completePayment");
+            completePayment.style.display = "block";
+        });
    </script>
 </body>
 
